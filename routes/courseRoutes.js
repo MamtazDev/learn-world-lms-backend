@@ -6,13 +6,14 @@ const {
   getCourse,
   deleteCourse,
 } = require("../controller/courseController");
+const { isAuth } = require("../utils/middleware");
 
 const router = express.Router();
 
-router.get("/", getAllCourse);
-router.post("/add", addCourse);
-router.put("/edit/:id", editCourse);
-router.get("/:id", getCourse);
-router.delete("/delete/:id", deleteCourse);
+router.get("/", isAuth, getAllCourse);
+router.post("/add", isAuth, addCourse);
+router.put("/edit/:id", isAuth, editCourse);
+router.get("/:id", isAuth, getCourse);
+router.delete("/delete/:id", isAuth, deleteCourse);
 
 module.exports = router;
